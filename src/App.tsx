@@ -16,8 +16,8 @@ const App: React.FC = () => {
 
   return (
     <div className="h-screen w-screen flex flex-col items-center bg-pink-500">
-      <h1 className="text-5xl font-lato font-bold mt-3 text-white z-10">
-        TASKIFY
+      <h1 className="text-5xl font-lato font-bold my-3 text-white z-10">
+        MY NOTES
       </h1>
       <InputField
         todo={todo}
