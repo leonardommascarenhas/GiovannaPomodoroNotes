@@ -26,26 +26,25 @@ function TodoBlock({ todo, todos, setTodos }: Props) {
     : "bg-yellow-400";
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
-      <div
-        key={todo.id}
-        className={`${todoClassName} flex justify-between`}
-      >
-        <h1>{todo.todo}</h1>
-        <div className="flex gap-3">
-          <button>
-            <AiTwotoneDelete onClick={() => handleDelete(todo.id)} />
-          </button>
-          <button>
-            <AiTwotoneEdit />
-          </button>
-          <button
-            className="border border-gray-600 rounded-xl"
-            onClick={() => handleDone(todo.id)}
-          >
-            Done
-          </button>
-        </div>
+    <form
+      key={todo.id}
+      onSubmit={(e) => e.preventDefault()}
+      className={`min-h-[70px] px-2 ${todoClassName} flex justify-between items-center`}
+    >
+      <h1 className="text-xl">{todo.todo}</h1>
+      <div className="flex gap-3">
+        <button>
+          <AiTwotoneDelete onClick={() => handleDelete(todo.id)} />
+        </button>
+        <button>
+          <AiTwotoneEdit />
+        </button>
+        <button
+          className="border border-gray-600 rounded-xl"
+          onClick={() => handleDone(todo.id)}
+        >
+          Done
+        </button>
       </div>
     </form>
   );
