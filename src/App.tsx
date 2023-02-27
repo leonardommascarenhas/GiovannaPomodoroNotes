@@ -14,14 +14,6 @@ const App: React.FC = () => {
     }
   };
 
-  const changeDescription = (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {
-    event.preventDefault();
-    if (todo) {
-    }
-  };
-
   return (
     <div className="h-screen w-screen flex flex-col items-center bg-pink-500">
       <h1 className="text-5xl font-lato font-bold mt-3 text-white z-10">
