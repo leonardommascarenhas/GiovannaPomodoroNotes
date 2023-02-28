@@ -65,11 +65,12 @@ function TodoBlock({ todo, todos, setTodos }: Props) {
           value={todo.todo}
           onChange={(e) => handleChange(todo.id, e.target.value)}
           onKeyDown={(e) => handleKeyPress(e)}
+          className="w-3/4"
         />
       ) : (
         <h1 className="text-xl font-roboto">{todo.todo}</h1>
       )}
-      <div className="flex gap-3">
+      <div className="flex gap-3 md:w-1/4">
         <button>
           <AiTwotoneDelete onClick={() => handleDelete(todo.id)} />
         </button>
