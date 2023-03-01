@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import InputField from "./components/InputField";
+import Timer from "./components/Timer";
 import TodoList from "./components/TodoList";
 import { Todo } from "./model";
 const App: React.FC = () => {
@@ -25,6 +26,7 @@ const App: React.FC = () => {
         handleAdd={handleAdd}
       />
       <TodoList todos={todos} setTodos={setTodos} />
+      <Timer timeOut={1} />
     </div>
   );
 };
