@@ -22,7 +22,7 @@ const App: React.FC = () => {
 
       <TodoList todos={todos} setTodos={setTodos} />
       <main>
-        <Timer timeOutH={0} timeOutM={50} timeOutS={0} restH={1} restM={1} />
+        <Timer timeOutH={0} timeOutM={0} timeOutS={5} resttH={0} resttM={1} resttS={0} />
       </main>
     </div>
   );
