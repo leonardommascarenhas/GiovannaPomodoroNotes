@@ -17,14 +17,12 @@ const App: React.FC = () => {
 
   return (
     <div className="h-screen w-screen flex flex-col items-center bg-pink-500">
-      <h1 className="text-5xl font-lato font-bold my-3 text-white z-10">
-        MY NOTES
-      </h1>
+      <h1 className="text-5xl font-lato font-bold my-3 text-white z-10">MY NOTES</h1>
       <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
 
       <TodoList todos={todos} setTodos={setTodos} />
       <main>
-        <Timer timeOutHours={0} timeOutMinutes={50} timeOutSeconds={0} />
+        <Timer timeOutH={0} timeOutM={50} timeOutS={0} restH={1} restM={1} />
       </main>
     </div>
   );

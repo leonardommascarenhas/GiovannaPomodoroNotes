@@ -6,12 +6,14 @@ interface Time {
   hours: number;
 }
 interface Props {
-  timeOutSeconds: number;
-  timeOutMinutes: number;
-  timeOutHours: number;
+  timeOutS: number;
+  timeOutM: number;
+  timeOutH: number;
+  restH: number;
+  restM: number;
 }
 
-const Timer = ({ timeOutSeconds, timeOutMinutes, timeOutHours }: Props) => {
+const Timer = ({ timeOutS, timeOutM, timeOutH, restM, restH }: Props) => {
   const [time, setTime] = useState<Time>({
     seconds: 0,
     minutes: 0,
@@ -19,11 +21,7 @@ const Timer = ({ timeOutSeconds, timeOutMinutes, timeOutHours }: Props) => {
   });
   const [intervalId, setIntervalId] = useState<number | undefined>(undefined);
   useEffect(() => {
-    if (
-      timeOutSeconds == time.seconds &&
-      timeOutMinutes == time.minutes &&
-      timeOutHours == time.hours
-    ) {
+    if (timeOutS == time.seconds && timeOutM == time.minutes && timeOutH == time.hours) {
       clearInterval(intervalId);
     }
   }, [time]);
@@ -56,7 +54,7 @@ const Timer = ({ timeOutSeconds, timeOutMinutes, timeOutHours }: Props) => {
   };
   return (
     <section>
-      <h1>Sessão {formatTime(timeOutHours, timeOutMinutes, timeOutSeconds)}</h1>
+      <h1>Sessão {formatTime(timeOutH, timeOutM, timeOutS)}</h1>
       <p>{formatTime(time.hours, time.minutes, time.seconds)}</p>
       <button onClick={startTimer}>Iniciar</button>
     </section>
