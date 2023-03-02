@@ -26,7 +26,7 @@ const App: React.FC = () => {
         handleAdd={handleAdd}
       />
       <TodoList todos={todos} setTodos={setTodos} />
-      <Timer timeOut={1} />
+      <Timer timeOutHours={0} timeOutMinutes={2} timeOutSeconds={7} />
     </div>
   );
 };

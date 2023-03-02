@@ -5,12 +5,17 @@ interface Time {
   minutes: number;
   hours: number;
 }
-
 interface Props {
-  timeOut: number;
+  timeOutSeconds: number;
+  timeOutMinutes: number;
+  timeOutHours: number;
 }
 
-const Timer = ({ timeOut }: Props) => {
+const Timer = ({
+  timeOutSeconds,
+  timeOutMinutes,
+  timeOutHours,
+}: Props) => {
   const [time, setTime] = useState<Time>({
     seconds: 0,
     minutes: 0,
@@ -20,8 +25,13 @@ const Timer = ({ timeOut }: Props) => {
     undefined
   );
   useEffect(() => {
-    if (timeOut == time.minutes) {
-      clearTimeout(intervalId);
+    console.log(timeOutMinutes, timeOutSeconds, time);
+    if (
+      timeOutSeconds == time.seconds &&
+      timeOutMinutes == time.minutes &&
+      timeOutHours == time.hours
+    ) {
+      clearInterval(intervalId);
     }
   }, [time]);
 
