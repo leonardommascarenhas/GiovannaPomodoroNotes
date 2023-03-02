@@ -11,21 +11,14 @@ interface Props {
   timeOutHours: number;
 }
 
-const Timer = ({
-  timeOutSeconds,
-  timeOutMinutes,
-  timeOutHours,
-}: Props) => {
+const Timer = ({ timeOutSeconds, timeOutMinutes, timeOutHours }: Props) => {
   const [time, setTime] = useState<Time>({
     seconds: 0,
     minutes: 0,
     hours: 0,
   });
-  const [intervalId, setIntervalId] = useState<number | undefined>(
-    undefined
-  );
+  const [intervalId, setIntervalId] = useState<number | undefined>(undefined);
   useEffect(() => {
-    console.log(timeOutMinutes, timeOutSeconds, time);
     if (
       timeOutSeconds == time.seconds &&
       timeOutMinutes == time.minutes &&
@@ -54,19 +47,19 @@ const Timer = ({
     setIntervalId(id);
   };
 
+  const formatTime = (hours: number, minutes: number, seconds: number) => {
+    const timeFormated = `${hours.toString().padStart(2, "0")}:${minutes
+      .toString()
+      .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}
+      `;
+    return timeFormated;
+  };
   return (
-    <div>
-      <h1>
-        {`
-      ${time.hours.toString().padStart(2, "0")}:${time.minutes
-          .toString()
-          .padStart(2, "0")}:${time.seconds
-          .toString()
-          .padStart(2, "0")}
-      `}
-      </h1>
-      <button onClick={startTimer}>Teste</button>
-    </div>
+    <section>
+      <h1>Sessão {formatTime(timeOutHours, timeOutMinutes, timeOutSeconds)}</h1>
+      <p>{formatTime(time.hours, time.minutes, time.seconds)}</p>
+      <button onClick={startTimer}>Iniciar</button>
+    </section>
   );
 };
 

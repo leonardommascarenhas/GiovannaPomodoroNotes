@@ -20,13 +20,12 @@ const App: React.FC = () => {
       <h1 className="text-5xl font-lato font-bold my-3 text-white z-10">
         MY NOTES
       </h1>
-      <InputField
-        todo={todo}
-        setTodo={setTodo}
-        handleAdd={handleAdd}
-      />
+      <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
+
       <TodoList todos={todos} setTodos={setTodos} />
-      <Timer timeOutHours={0} timeOutMinutes={2} timeOutSeconds={7} />
+      <main>
+        <Timer timeOutHours={0} timeOutMinutes={50} timeOutSeconds={0} />
+      </main>
     </div>
   );
 };
