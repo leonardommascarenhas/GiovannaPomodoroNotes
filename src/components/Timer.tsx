@@ -96,14 +96,13 @@ const Timer = ({ timeOutS, timeOutM, timeOutH, restTimeOutM, restTimeOutH, restT
         <Rest restTime={formatTime(rest.restH, rest.restM, rest.restS)} />
       )}
       {!isStarted ? (
-        <button
-          onClick={startTimer}
-          className="bg-blue-500 rounded-sm px-2 py-1 mt-4 text-white text-lg font-bold font-lato hover:bg-blue-600"
-        >
+        <button onClick={startTimer} className="timerButtons bg-green-500 hover:bg-green-600">
           START
         </button>
       ) : (
-        <button onClick={stopTimer}>STOP</button>
+        <button onClick={stopTimer} className="timerButtons bg-red-500 hover:bg-red-600">
+          STOP
+        </button>
       )}
     </section>
   );

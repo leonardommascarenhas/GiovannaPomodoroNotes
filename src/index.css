@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components{
+    .timerButtons{
+        @apply rounded-sm px-2 py-1 mt-4 ml-1.5 text-white text-lg font-bold font-lato
+    }
+}

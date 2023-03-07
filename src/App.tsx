@@ -21,7 +21,7 @@ const App: React.FC = () => {
       <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
       <TodoList todos={todos} setTodos={setTodos} />
       <main className="w-11/12 md:max-w-[480px] lg:max-w-[680px] mt-6">
-        <Timer timeOutH={0} timeOutM={1} timeOutS={5} restTimeOutH={0} restTimeOutM={1} restTimeOutS={0} />
+        <Timer timeOutH={0} timeOutM={50} timeOutS={0} restTimeOutH={0} restTimeOutM={10} restTimeOutS={0} />
       </main>
     </div>
   );
