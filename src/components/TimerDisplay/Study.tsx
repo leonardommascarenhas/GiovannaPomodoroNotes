@@ -8,8 +8,8 @@ interface Props {
 const Study = ({ studyTime }: Props) => {
   return (
     <>
-      <h2 className="text-3xl">Study</h2>
-      <p className="text-5xl font-orbitron">{studyTime}</p>
+      <h2 className="text-4xl md:text-5xl font-bold">Study</h2>
+      <p className="text-5xl md:text-8xl lg:text-9xl font-orbitron font-light">{studyTime}</p>
     </>
   );
 };
