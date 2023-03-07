@@ -29,6 +29,7 @@ const Timer = ({ timeOutS, timeOutM, timeOutH, restTimeOutM, restTimeOutH, restT
   });
   const [isResting, setIsResting] = useState<boolean>(false);
   const [intervalId, setIntervalId] = useState<number | undefined>(undefined);
+  const [isStarted, setIsStarted] = useState<boolean>(false);
 
   useEffect(() => {
     if (timeOutS == time.seconds && timeOutM == time.minutes && timeOutH == time.hours) {
@@ -68,8 +69,13 @@ const Timer = ({ timeOutS, timeOutM, timeOutH, restTimeOutM, restTimeOutH, restT
       }, 1000);
       setIntervalId(id);
     }
+    setIsStarted(true);
   };
 
+  const stopTimer = () => {
+    clearInterval(intervalId);
+    setIsStarted(false);
+  };
   const formatTime = (hours: number, minutes: number, seconds: number) => {
     let timeFormated = "";
 
@@ -89,12 +95,16 @@ const Timer = ({ timeOutS, timeOutM, timeOutH, restTimeOutM, restTimeOutH, restT
       ) : (
         <Rest restTime={formatTime(rest.restH, rest.restM, rest.restS)} />
       )}
-      <button
-        onClick={startTimer}
-        className="bg-blue-500 rounded-sm px-2 py-1 mt-4 text-white text-lg font-bold font-lato hover:bg-blue-600"
-      >
-        Iniciar
-      </button>
+      {!isStarted ? (
+        <button
+          onClick={startTimer}
+          className="bg-blue-500 rounded-sm px-2 py-1 mt-4 text-white text-lg font-bold font-lato hover:bg-blue-600"
+        >
+          START
+        </button>
+      ) : (
+        <button onClick={stopTimer}>STOP</button>
+      )}
     </section>
   );
 };

@@ -16,9 +16,7 @@ function TodoBlock({ todo, todos, setTodos }: Props) {
   }, [isActive]);
 
   const handleDone = (id: number) => {
-    setTodos(
-      todos.map((todo) => (todo.id === id ? { ...todo, isDone: !todo.isDone } : todo))
-    );
+    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, isDone: !todo.isDone } : todo)));
   };
 
   const handleDelete = (id: number) => {
@@ -39,9 +37,7 @@ function TodoBlock({ todo, todos, setTodos }: Props) {
     }
   };
 
-  const todoClassName: string | undefined = todo.isDone
-    ? "bg-green-500"
-    : "bg-yellow-400";
+  const todoClassName: string | undefined = todo.isDone ? "bg-green-500" : "bg-yellow-400";
 
   return (
     <form
@@ -69,10 +65,7 @@ function TodoBlock({ todo, todos, setTodos }: Props) {
         <button onClick={() => handleEditButton()}>
           <AiTwotoneEdit />
         </button>
-        <button
-          className="border border-gray-600 rounded-xl"
-          onClick={() => handleDone(todo.id)}
-        >
+        <button className="border border-gray-600 rounded-xl" onClick={() => handleDone(todo.id)}>
           Done
         </button>
       </div>
