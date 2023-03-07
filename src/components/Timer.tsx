@@ -83,7 +83,7 @@ const Timer = ({ timeOutS, timeOutM, timeOutH, restTimeOutM, restTimeOutH, restT
   };
 
   return (
-    <section className="flex flex-col items-center w-60 bg-white bg-opacity-50 rounded-lg p-4 transition text-white shadow-xl">
+    <section className="flex flex-col items-center bg-white bg-opacity-50 rounded-lg p-6  transition text-white shadow-xl">
       {!isResting ? (
         <Study studyTime={formatTime(time.hours, time.minutes, time.seconds)} />
       ) : (
