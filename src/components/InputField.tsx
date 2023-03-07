@@ -8,10 +8,7 @@ interface Props {
 
 const InputField = ({ todo, setTodo, handleAdd }: Props) => {
   return (
-    <form
-      className=" relative flex justify-center w-11/12"
-      onSubmit={handleAdd}
-    >
+    <form className=" relative flex justify-center w-11/12" onSubmit={handleAdd}>
       <input
         type="text"
         value={todo}

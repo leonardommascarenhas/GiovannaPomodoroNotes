@@ -9,12 +9,12 @@ interface Props {
   timeOutS: number;
   timeOutM: number;
   timeOutH: number;
-  resttH: number;
-  resttM: number;
-  resttS: number;
+  restTimeOutH: number;
+  restTimeOutM: number;
+  restTimeOutS: number;
 }
 
-const Timer = ({ timeOutS, timeOutM, timeOutH, resttM, resttH, resttS }: Props) => {
+const Timer = ({ timeOutS, timeOutM, timeOutH, restTimeOutM, restTimeOutH, restTimeOutS }: Props) => {
   const [time, setTime] = useState<Time>({
     seconds: 0,
     minutes: 0,
@@ -25,9 +25,9 @@ const Timer = ({ timeOutS, timeOutM, timeOutH, resttM, resttH, resttS }: Props) 
     restM: 0,
     restS: 0,
   });
-  const [isResting, setIsResting] = useState(false);
-
+  const [isResting, setIsResting] = useState<boolean>(false);
   const [intervalId, setIntervalId] = useState<number | undefined>(undefined);
+
   useEffect(() => {
     if (timeOutS == time.seconds && timeOutM == time.minutes && timeOutH == time.hours) {
       clearInterval(intervalId);
@@ -35,7 +35,7 @@ const Timer = ({ timeOutS, timeOutM, timeOutH, resttM, resttH, resttS }: Props) 
     }
   }, [time]);
   useEffect(() => {
-    if (resttS == rest.restS && resttM == rest.restM && resttH == rest.restH) {
+    if (restTimeOutS == rest.restS && restTimeOutM == rest.restM && restTimeOutH == rest.restH) {
       clearInterval(intervalId);
       setIsResting(!isResting);
     }
@@ -47,15 +47,8 @@ const Timer = ({ timeOutS, timeOutM, timeOutH, resttM, resttH, resttS }: Props) 
         setTime((current) => ({
           seconds: current.seconds < 59 ? current.seconds + 1 : 0,
           minutes:
-            current.seconds === 59
-              ? current.minutes < 59
-                ? current.minutes + 1
-                : 0
-              : current.minutes,
-          hours:
-            current.seconds === 59 && current.minutes === 59
-              ? current.hours + 1
-              : current.hours,
+            current.seconds === 59 ? (current.minutes < 59 ? current.minutes + 1 : 0) : current.minutes,
+          hours: current.seconds === 59 && current.minutes === 59 ? current.hours + 1 : current.hours,
         }));
       }, 1000);
       setIntervalId(id);
@@ -64,16 +57,8 @@ const Timer = ({ timeOutS, timeOutM, timeOutH, resttM, resttH, resttS }: Props) 
       const id = setInterval(() => {
         setRest((current) => ({
           restS: current.restS < 59 ? current.restS + 1 : 0,
-          restM:
-            current.restS == 59
-              ? current.restM < 59
-                ? current.restM + 1
-                : 0
-              : current.restM,
-          restH:
-            current.restM == 59 && current.restS == 59
-              ? current.restH + 1
-              : current.restH,
+          restM: current.restS == 59 ? (current.restM < 59 ? current.restM + 1 : 0) : current.restM,
+          restH: current.restM == 59 && current.restS == 59 ? current.restH + 1 : current.restH,
         }));
       }, 1000);
       setIntervalId(id);
@@ -88,12 +73,25 @@ const Timer = ({ timeOutS, timeOutM, timeOutH, resttM, resttH, resttS }: Props) 
     return timeFormated;
   };
   return (
-    <section>
-      <h1>Sessão {formatTime(timeOutH, timeOutM, timeOutS)}</h1>
-      <h1>{formatTime(resttH, resttM, resttS)}</h1>
-      <p>{formatTime(time.hours, time.minutes, time.seconds)}</p>
-      <p>{formatTime(rest.restH, rest.restM, rest.restS)}</p>
-      <button onClick={startTimer}>Iniciar</button>
+    <section className="flex flex-col gap-4 bg-white bg-opacity-50 rounded-lg p-4 transition">
+      {!isResting ? (
+        <>
+          <h2>timer de estudo</h2>
+          <p>{formatTime(time.hours, time.minutes, time.seconds)}</p>
+        </>
+      ) : (
+        <>
+          <h1>{formatTime(restTimeOutH, restTimeOutM, restTimeOutS)}</h1>
+          <h2>Timer de descanso</h2>
+          <p>{formatTime(rest.restH, rest.restM, rest.restS)}</p>
+        </>
+      )}
+      <button
+        onClick={startTimer}
+        className="bg-blue-500 rounded-sm px-2 py-1 text-white text-lg font-bold font-lato hover:bg-blue-600"
+      >
+        Iniciar
+      </button>
     </section>
   );
 };

@@ -17,9 +17,7 @@ function TodoBlock({ todo, todos, setTodos }: Props) {
 
   const handleDone = (id: number) => {
     setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
-      )
+      todos.map((todo) => (todo.id === id ? { ...todo, isDone: !todo.isDone } : todo))
     );
   };
 
@@ -32,16 +30,10 @@ function TodoBlock({ todo, todos, setTodos }: Props) {
   };
 
   const handleChange = (id: number, newValue: string) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, todo: newValue } : todo
-      )
-    );
+    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, todo: newValue } : todo)));
   };
 
-  const handleKeyPress = (
-    e: React.KeyboardEvent<HTMLInputElement>
-  ) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       setIsActive(!isActive);
     }

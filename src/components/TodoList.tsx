@@ -11,12 +11,7 @@ const TodoList = ({ todos, setTodos }: Props) => {
   return (
     <section className=" w-11/12  mt-4 grid grid-cols-1 gap-3">
       {todos.map((todo) => (
-        <TodoBlock
-          todo={todo}
-          key={todo.id}
-          todos={todos}
-          setTodos={setTodos}
-        />
+        <TodoBlock todo={todo} key={todo.id} todos={todos} setTodos={setTodos} />
       ))}
     </section>
   );
