@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Study from "./TimerDisplay/Study";
+import Rest from "./TimerDisplay/Rest";
 
 interface Time {
   seconds: number;
@@ -32,12 +34,14 @@ const Timer = ({ timeOutS, timeOutM, timeOutH, restTimeOutM, restTimeOutH, restT
     if (timeOutS == time.seconds && timeOutM == time.minutes && timeOutH == time.hours) {
       clearInterval(intervalId);
       setIsResting(!isResting);
+      setTime({ hours: 0, minutes: 0, seconds: 0 });
     }
   }, [time]);
   useEffect(() => {
     if (restTimeOutS == rest.restS && restTimeOutM == rest.restM && restTimeOutH == rest.restH) {
       clearInterval(intervalId);
       setIsResting(!isResting);
+      setRest({ restH: 0, restM: 0, restS: 0 });
     }
   }, [rest]);
 
@@ -72,18 +76,14 @@ const Timer = ({ timeOutS, timeOutM, timeOutH, restTimeOutM, restTimeOutH, restT
       `;
     return timeFormated;
   };
+
   return (
-    <section className="flex flex-col gap-4 bg-white bg-opacity-50 rounded-lg p-4 transition">
+    <section className="flex flex-col gap-4 bg-white bg-opacity-50 rounded-lg p-4 transition text-white shadow-xl">
       {!isResting ? (
-        <>
-          <h2>timer de estudo</h2>
-          <p>{formatTime(time.hours, time.minutes, time.seconds)}</p>
-        </>
+        <Study studyTime={formatTime(time.hours, time.minutes, time.seconds)} />
       ) : (
         <>
-          <h1>{formatTime(restTimeOutH, restTimeOutM, restTimeOutS)}</h1>
-          <h2>Timer de descanso</h2>
-          <p>{formatTime(rest.restH, rest.restM, rest.restS)}</p>
+          <Rest restTime={formatTime(rest.restH, rest.restM, rest.restS)} />
         </>
       )}
       <button
