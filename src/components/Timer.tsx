@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Study from "./TimerDisplay/Study";
 import Rest from "./TimerDisplay/Rest";
 
@@ -37,6 +37,7 @@ const Timer = ({ timeOutS, timeOutM, timeOutH, restTimeOutM, restTimeOutH, restT
       setTime({ hours: 0, minutes: 0, seconds: 0 });
     }
   }, [time]);
+
   useEffect(() => {
     if (restTimeOutS == rest.restS && restTimeOutM == rest.restM && restTimeOutH == rest.restH) {
       clearInterval(intervalId);
@@ -70,25 +71,27 @@ const Timer = ({ timeOutS, timeOutM, timeOutH, restTimeOutM, restTimeOutH, restT
   };
 
   const formatTime = (hours: number, minutes: number, seconds: number) => {
-    const timeFormated = `${hours.toString().padStart(2, "0")}:${minutes
-      .toString()
-      .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}
-      `;
+    let timeFormated = "";
+
+    if (hours >= 1) {
+      timeFormated += `${hours.toString().padStart(2, "0")}:`;
+    }
+
+    timeFormated += `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
     return timeFormated;
   };
 
   return (
-    <section className="flex flex-col gap-4 bg-white bg-opacity-50 rounded-lg p-4 transition text-white shadow-xl">
+    <section className="flex flex-col items-center w-60 bg-white bg-opacity-50 rounded-lg p-4 transition text-white shadow-xl">
       {!isResting ? (
         <Study studyTime={formatTime(time.hours, time.minutes, time.seconds)} />
       ) : (
-        <>
-          <Rest restTime={formatTime(rest.restH, rest.restM, rest.restS)} />
-        </>
+        <Rest restTime={formatTime(rest.restH, rest.restM, rest.restS)} />
       )}
       <button
         onClick={startTimer}
-        className="bg-blue-500 rounded-sm px-2 py-1 text-white text-lg font-bold font-lato hover:bg-blue-600"
+        className="bg-blue-500 rounded-sm px-2 py-1 mt-4 text-white text-lg font-bold font-lato hover:bg-blue-600"
       >
         Iniciar
       </button>

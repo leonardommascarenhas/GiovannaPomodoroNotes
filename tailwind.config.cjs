@@ -9,7 +9,8 @@ module.exports = {
     extend: {
       fontFamily: {
         lato: ['Lato', 'sans-serif'],
-        roboto: ['Roboto', 'sans-serif']
+        roboto: ['Roboto', 'sans-serif'],
+        orbitron: [ 'Orbitron', 'sans-serif']
       }
     },
   },

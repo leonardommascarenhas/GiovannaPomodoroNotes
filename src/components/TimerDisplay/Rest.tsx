@@ -5,8 +5,8 @@ interface Props {
 const Study = ({ restTime }: Props) => {
   return (
     <>
-      <h2>Rest</h2>
-      <p>{restTime}</p>
+      <h2 className="text-3xl">Rest</h2>
+      <p className="text-5xl">{restTime}</p>
     </>
   );
 };
