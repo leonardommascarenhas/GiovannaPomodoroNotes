@@ -36,6 +36,7 @@ const Timer = ({ timeOutS, timeOutM, timeOutH, restTimeOutM, restTimeOutH, restT
       clearInterval(intervalId);
       setIsResting(!isResting);
       setTime({ hours: 0, minutes: 0, seconds: 0 });
+      setIsStarted(false);
     }
   }, [time]);
 
@@ -44,6 +45,7 @@ const Timer = ({ timeOutS, timeOutM, timeOutH, restTimeOutM, restTimeOutH, restT
       clearInterval(intervalId);
       setIsResting(!isResting);
       setRest({ restH: 0, restM: 0, restS: 0 });
+      setIsStarted(false);
     }
   }, [rest]);
 
